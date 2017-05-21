@@ -3,13 +3,11 @@
 module.exports = function (context, request) {
     context.log('JavaScript HTTP trigger function processed a request.');
 
-    context.log(request.headers['content-type']);
-
     if (request.headers['content-type'] === 'application/json') {
         if ((request.query.name || (request.body && request.body.name))) {
             context.res = {
                 // status: 200, /* Defaults to 200 */
-                body: "Hello " + (request.query.name || request.body.name)
+                body: "Hello " + (request.query.name || request.body.name) + `. Headers: ${request.headers['content-type']}`
             };
         }
         else {
